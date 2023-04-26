@@ -1,17 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import './index.css';
 import Header from './components/Header';
-import Filter from './components/Filter';
+import Countries from './components/Countries';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Header />
-        <Filter />
-        
-      </header>
+    
+    <div className="dark" >
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Countries />} />
+      </Routes>
+    </Router>
     </div>
+    
   );
 }
 
