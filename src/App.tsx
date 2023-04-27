@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Countries from './components/Countries';
 import CountryDetails from './components/CountryDetails';
 
-interface ThemeContextProps {
+ interface ThemeContextProps {
   theme: string;
   toggleTheme: () => void;
 }

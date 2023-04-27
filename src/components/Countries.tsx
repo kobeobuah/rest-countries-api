@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
+import { ThemeContext } from "../App";
 
 interface Country {
   population: number;
@@ -19,6 +20,8 @@ const url = "https://restcountries.com/v3.1/all";
 const Countries = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
+  const themeContext = useContext(ThemeContext);
+    const theme = themeContext?.theme;
 
   const fetchCountryData = async () => {
     try {
@@ -56,7 +59,7 @@ const Countries = () => {
               <article>
                 <div>
                   <img src={flags.svg} alt={countryName} />
-                  <div className={`details`}>
+                  <div className={`details ${theme}`}>
                     <h3>{countryName}</h3>
                     <h4>
                       Population: <span>{population}</span>
