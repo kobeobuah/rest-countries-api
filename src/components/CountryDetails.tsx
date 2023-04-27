@@ -1,9 +1,9 @@
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import "../countryDetails.css";
 
 
-interface Country {
+interface CountryDetail {
   name: {
     common: string;
   };
@@ -26,8 +26,8 @@ interface Country {
   borders: string[];
 }
 
-const Country = () => {
-  const [country, setCountry] = useState<Country | null>(null);
+const CountryDetails = () => {
+  const [country, setCountry] = useState<CountryDetail | null>(null);
   const { name } = useParams();
   
 
@@ -136,4 +136,4 @@ const Country = () => {
   )
 }
 
-export default Country
+export default CountryDetails

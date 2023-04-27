@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
 
@@ -41,7 +41,7 @@ const Countries = () => {
 
   return (
     <>
-      {/* <Filter setCountries={setCountries} countries={countries} /> */}
+      <Filter setCountries={setCountries} countries={countries} />
       <section className="grid">
         {countries.map((country: Country) => {
           const { population, region, capital, flags, name } = country;
