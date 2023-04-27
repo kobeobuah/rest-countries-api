@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import "../countryDetails.css";
 
 
 interface Country {
