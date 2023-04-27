@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { ThemeContext } from "../App";
+
 interface Country {
   population: number;
   region: string;
@@ -16,6 +19,9 @@ interface Props {
 }
 
 const Filter = ({ setCountries, countries }: Props) => {
+
+  const themeContext = useContext(ThemeContext);
+  const theme = themeContext?.theme;
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value.trim().toLowerCase();
@@ -57,7 +63,7 @@ const Filter = ({ setCountries, countries }: Props) => {
           name="search"
           id="search"
           placeholder="Search for a country..."
-          className={`form-control`}
+          className={`form-control ${theme}`}
           onChange={handleSearch}
         />
         <i className="far fa-search" style={{ color: "red" }}></i>
@@ -67,7 +73,7 @@ const Filter = ({ setCountries, countries }: Props) => {
         <select
           name="region"
           id="region"
-          className={`select`}
+          className={`select ${theme}`}
           onChange={handleFilter}
         >
           <option value="">Filter by Region</option>

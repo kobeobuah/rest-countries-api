@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "../App";
 import "../countryDetails.css";
 
 
@@ -29,7 +30,8 @@ interface CountryDetail {
 const CountryDetails = () => {
   const [country, setCountry] = useState<CountryDetail | null>(null);
   const { name } = useParams();
-  
+  const themeContext = useContext(ThemeContext);
+  const theme = themeContext?.theme;
 
   useEffect(() => {
     const fetchCountryData = async () => {
@@ -59,9 +61,9 @@ const CountryDetails = () => {
   }
 
   return (
-    <div className={``}>
+    <div className={`${theme}`}>
       <section className={`country`}>
-        <Link to="/" className={`btn btn-`}>
+        <Link to="/" className={`btn btn-${theme}`}>
           <i className="fas fa-arrow-left"></i>
           <span className="back">Back</span>
         </Link>
@@ -114,14 +116,14 @@ const CountryDetails = () => {
               </div>
             </div>
           </div>
-          <div className={`border-country`}>
+          <div className={`border-country ${theme}`}>
             {country.borders && country.borders.length > 0 && (
               <>
                 <h3>Border Countries:</h3>
                 <div className="borders">
                   <ul>
                     {country.borders.map((border) => (
-                      <li key={border} className={`border-countries`}>
+                      <li key={border} className={`border-countries ${theme}`}>
                         <Link to={`/countries/${border}`} style={{ textDecoration: 'none', color: "inherit" }}>{border}</Link>
                       </li>
                     ))}

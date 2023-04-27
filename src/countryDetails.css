@@ -12,6 +12,11 @@
     display: inline-block;
 }
 
+.btn-dark {
+    margin-bottom: 30px;
+    display: inline-block;
+}
+
 .country article .country-details div {
     margin: 30px 0;
 }
