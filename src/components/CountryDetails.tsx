@@ -63,39 +63,42 @@ const CountryDetails = () => {
   return (
     <div className={`${theme}`}>
       <section className={`country`}>
-        <Link to="/" className={`btn btn-${theme}`}>
+      <Link to="/" className={`btn btn-${theme}`}>
           <i className="fas fa-arrow-left"></i>
           <span className="back">Back</span>
         </Link>
         <article className="article">
           <div className="country-inner">
-            <div className="flag">
-              <img src={country.flags?.svg} alt={country.name?.common} />
+          <div className="flag">
+            <img src={country.flags?.svg} alt={country.name?.common} />
+          </div>
+
+
+          <div className="country-details-container">
+          <div className="country-details">
+            <div>
+              <h2>{country.name?.common}</h2>
+              <h5>
+                Native Name: <span>{country.name?.common}</span>
+              </h5>
+              <h5>
+                Population: <span>{country.population?.toLocaleString()}</span>
+              </h5>
+              <h5>
+                Region: <span>{country.region}</span>
+              </h5>
+              <h5>
+                Subregion: <span>{country.subregion}</span>
+              </h5>
+              <h5>
+                Capital: <span>{country.capital?.[0]}</span>
+              </h5>
             </div>
-            <div className="country-details">
-              <div>
-                <h2>{country.name?.common}</h2>
-                <h5>
-                  Native Name: <span>{country.name?.common}</span>
-                </h5>
-                <h5>
-                  Population: <span>{country.population?.toLocaleString()}</span>
-                </h5>
-                <h5>
-                  Region: <span>{country.region}</span>
-                </h5>
-                <h5>
-                  Subregion: <span>{country.subregion}</span>
-                </h5>
-                <h5>
-                  Capital: <span>{country.capital?.[0]}</span>
-                </h5>
-              </div>
-              <div>
-                <h5>
-                  Top Level Domain: <span>{country.tld?.[0]}</span>
-                </h5>
-                <h5>
+            <div>
+              <h5>
+                Top Level Domain: <span>{country.tld?.[0]}</span>
+              </h5>
+              <h5>
                   Currencies:{" "}
                   <span>
                     {country.currencies &&
@@ -113,13 +116,13 @@ const CountryDetails = () => {
                         .join(", ")}
                   </span>
                 </h5>
-              </div>
             </div>
           </div>
+          
           <div className={`border-country ${theme}`}>
-            {country.borders && country.borders.length > 0 && (
-              <>
-                <h3>Border Countries:</h3>
+          {country.borders && country.borders.length > 0 && (
+            <>
+            <h3>Border Countries:</h3>
                 <div className="borders">
                   <ul>
                     {country.borders.map((border) => (
@@ -131,6 +134,8 @@ const CountryDetails = () => {
                 </div>
                 </>
               )} 
+          </div>
+          </div>
           </div>
         </article>
       </section>

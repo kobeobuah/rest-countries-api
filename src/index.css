@@ -267,21 +267,9 @@ article img {
     font-size: 14px;
   }
 
-  .border-country {
-    position: absolute;
-    left: 51%;
-    right: 24.58%;
-    top: 60%;
-
-  }
-
   img {
     max-width: 500px;
     height: 400px;
   }
 
-  /* .grid article img {
-    height: 200px;
-    object-fit: cover;
-  } */
 }
