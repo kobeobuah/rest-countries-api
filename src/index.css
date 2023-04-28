@@ -54,6 +54,11 @@ img {
   color: var(--dark-bg-color);
 }
 
+.btn-light:hover {
+  background-color: var(--light-mode-text);
+  color: var(--light-mode-background);
+}
+
 .btn-light{
   background-color: var(--light-mode-background);
   color: var(--light-mode-text);
@@ -79,7 +84,7 @@ body {
   justify-content: space-between;
   background-color: #2b3743;
   padding: 10px 20px;
-  box-shadow: 0 5px 10px hsla(200, 15%, 8%, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0562443);
 }
 
 header.light {
@@ -98,6 +103,7 @@ header.light {
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
+  cursor: pointer;
 }
 
 .filter {
@@ -115,7 +121,7 @@ header.light {
   background-color: #2b3743;
   border: none;
   outline: none;
-  padding: 8px;
+  padding: 12px;
   border-radius: 5px;
   color: #fff;
   font-family: inherit;
@@ -125,18 +131,20 @@ header.light {
 }
 
 .form-control input.light {
-  background-color: var(--light-mode-input);
-  
+  background-color: var(--text-color);
+  color: var(--light-mode-text);
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
 }
 
 #region.select.light {
-  background-color: var(--light-mode-input);
-  
+  background-color: var(--text-color);
+  color: var(--light-mode-text);
+  box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.0532439);
 }
 
 
 .filter .form-control input::placeholder {
-  color: #fff;
+  color: rgb(202, 200, 200);
 }
 
 .filter .region-filter {
@@ -216,7 +224,8 @@ article img {
   .filter {
     flex-direction: row;
     justify-content: space-between;
-    
+    margin-top: 28px;
+    margin-bottom: 28px;
   }
 
   .filter .form-control {

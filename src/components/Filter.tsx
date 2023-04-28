@@ -66,7 +66,7 @@ const Filter = ({ setCountries, countries }: Props) => {
           className={`form-control ${theme}`}
           onChange={handleSearch}
         />
-        <i className="far fa-search" style={{ color: "red" }}></i>
+        {/* <i className="far fa-search" style={{ color: "red" }}></i> */}
       </form>
 
       <div className="region-filter">
