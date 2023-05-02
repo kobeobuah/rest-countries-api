@@ -171,6 +171,7 @@ header.light {
   gap: 40px;
   padding: 20px;
   height: 100%;
+  margin: 0 20px;
 }
 
 .grid article {
@@ -243,6 +244,7 @@ article img {
 
   .grid {
     grid-template-columns: repeat(3, 1fr);
+    margin: 0;
   }
 }
 
