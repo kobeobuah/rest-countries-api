@@ -5,9 +5,8 @@ import "../countryDetails.css";
 
 
 interface CountryDetail {
-  name: {
-    common: string;
-  };
+  name: string;
+  nativeName: string;
   population: number;
   region: string;
   subregion: string;
@@ -15,45 +14,56 @@ interface CountryDetail {
   flags: {
     svg: string;
   };
-  tld: string[];
+  topLevelDomain: string[];
   currencies: {
     [code: string]: {
       name: string;
     };
   };
   languages: {
-    [code: string]: string;
+    [code: string]: {
+      name: string;
+    }
   };
   borders: string[];
 }
 
 const CountryDetails = () => {
   const [country, setCountry] = useState<CountryDetail | null>(null);
+  const [borderCountries, setBorderCountry] = useState<string[]>([])
   const { name } = useParams();
   const themeContext = useContext(ThemeContext);
   const theme = themeContext?.theme;
 
   useEffect(() => {
-    const fetchCountryData = async () => {
+    const fetchCountryData = async (name: string) => {
       try {
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${name}`
-        );
+        const url = `https://restcountries.com/v2/name/${name}`;
+        const response = await fetch(url);
         const data = await response.json();
-        console.log(data); // Log the full response to see the data fields
-
-        // Check if the response contains an error message
-        if (data.status === 404) {
-          throw new Error(data.message);
-        }
-
-        setCountry(data[0]); // Set the first country in the response array
+        setCountry(data[0]);
+        const borderData = await Promise.all(
+          data[0]?.borders?.map((border: string) => findCountryData(border))
+        );
+        setBorderCountry(borderData);
       } catch (error) {
         console.log(error);
       }
     };
-
-    fetchCountryData();
+    const findCountryData = async (border: string) => {
+      try {
+        const url = `https://restcountries.com/v2/alpha/${border}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data.name;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (name) {
+      fetchCountryData(name);
+    }
+    
   }, [name]);
 
   if (!country) {
@@ -70,16 +80,16 @@ const CountryDetails = () => {
         <article className="article">
           <div className="country-inner">
           <div className="flag">
-            <img src={country.flags?.svg} alt={country.name?.common} />
+            <img src={country.flags?.svg} alt={country.name} />
           </div>
 
 
           <div className="country-details-container">
           <div className="country-details">
             <div>
-              <h2>{country.name?.common}</h2>
+              <h2>{country.name}</h2>
               <h5>
-                Native Name: <span>{country.name?.common}</span>
+                Native Name: <span>{country.nativeName}</span>
               </h5>
               <h5>
                 Population: <span>{country.population?.toLocaleString()}</span>
@@ -91,12 +101,12 @@ const CountryDetails = () => {
                 Subregion: <span>{country.subregion}</span>
               </h5>
               <h5>
-                Capital: <span>{country.capital?.[0]}</span>
+                Capital: <span>{country.capital}</span>
               </h5>
             </div>
             <div>
               <h5>
-                Top Level Domain: <span>{country.tld?.[0]}</span>
+                Top Level Domain: <span>{country.topLevelDomain?.[0]}</span>
               </h5>
               <h5>
                   Currencies:{" "}
@@ -112,7 +122,7 @@ const CountryDetails = () => {
                   <span>
                     {country.languages &&
                       Object.values(country.languages)
-                        .map((language) => language)
+                        .map((language) => language.name)
                         .join(", ")}
                   </span>
                 </h5>
@@ -120,12 +130,12 @@ const CountryDetails = () => {
           </div>
           
           <div className={`border-country ${theme}`}>
-          {country.borders && country.borders.length > 0 && (
+          {borderCountries && borderCountries.length > 0 && (
             <>
             <h3>Border Countries:</h3>
                 <div className="borders">
                   <ul>
-                    {country.borders.map((border) => (
+                    {borderCountries.map((border) => (
                       <li key={border} className={`border-countries ${theme}`}>
                         <Link to={`/countries/${border}`} style={{ textDecoration: 'none', color: "inherit" }}>{border}</Link>
                       </li>

@@ -27,7 +27,7 @@ const Countries = () => {
     try {
       const response = await fetch(url);
       const countries: Country[] = await response.json();
-      setCountries(countries.slice(0, 20));
+      setCountries(countries);
       setLoading(false);
     } catch (error) {
       console.log(error);

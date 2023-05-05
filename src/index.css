@@ -229,12 +229,13 @@ article img {
     margin-bottom: 28px;
   }
 
-  .filter .form-control {
+  /* .filter .form-control {
     width: auto;
-  }
+  } */
 
   .filter .form-control input {
-    width: auto;
+    /* width: auto; */
+    width: 40%;
     margin: 0;
   }
 
